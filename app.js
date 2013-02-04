@@ -3,13 +3,24 @@
  * Module dependencies.
  */
 
-var express = require('express')
-  , routes = require('./routes')
-  , user = require('./routes/user')
-  , http = require('http')
-  , path = require('path');
+var express = require('express'),
+    http = require('http'),
+    path = require('path'),
+    gir = require('gir'),
+    rpg = gir.load('rpg'),
+    routes = require('./routes');
 
 var app = express();
+
+function init_rpg() {
+  rs = new rpg.ResourceManager();
+  rs.load_spriteset_manager(__dirname+"/public/data/spriteset/");
+  rs.load_tileset_manager(__dirname+"/public/data/tileset/");
+  rs.load_map_manager(__dirname+"/public/data/map/");
+}
+init_rpg();
+
+map = require('./routes/map')(rs);
 
 app.configure(function(){
   app.set('port', process.env.PORT || 3000);
@@ -28,7 +39,7 @@ app.configure('development', function(){
 });
 
 app.get('/', routes.index);
-app.get('/users', user.list);
+app.get('/map/:filename', map.filename);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
