@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="100" height="100" tilewidth="16" tileheight="16">
+ <properties>
+  <property name="author" value="Pascal Garber"/>
+  <property name="description" value="This is a simple test map to test our game engine."/>
+  <property name="name" value="Test Map"/>
+ </properties>
+ <tileset firstgid="1" source="../tileset/Stadt - Sommer.tsx"/>
+ <layer name="under hero 1" width="100" height="100">
+  <properties>
+   <property name="drawlayer" value="under"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3cS0oDQRhF4Y4b8LkNja7DqMtSZ+rEFagzdQ/GmboRHyMX4N/QQlPQQkwVOU2dwSWfISQhbR0yymzSNEexw9hsCa/HNmKbGuHd2F5sqhFe9nzpvKacU22viKacU22viKac0xp8EbvsdjXwGMo5rcH3sYdujwOPyXXWvpum2Yrb7dhp7CzZecbXGqtfYq/d3gYes+wZbK/DtLvdj9uD2E3sNtldhteqwTnOY3sudmLHsZPYU2zerX89KN0o4ff4f/yIfca+erfp/Yv8PeT+49L7/3ru9rr/npX2elC6UcLXTZ6tFVx6PShNKOGSn2Op60FpSwmv+rP+z/WgtKWEKe8jda29oryP1LX2ivI+Utsrlu0Vy/aKZXvFsr1i2V6xbK9Ytlcs2yuW7RXL9ople8WyvWLZXrFsr1i2VyzbK5btFcv2imV7xbK9YtlesWyvWLZXLNsrlu0Vy/aKZXvFsr1i2V6xbK9Ytlcs2yuW7RXL9ople8WyvWLZXrFsr1i2VyzbK5btFcv2imV7lc/pb1DmWC2/11fiedPfoMw5e7W45wX3POG0ZSy9yv39atUNGXuvcn+/WnVDxt6r3N+vCOfVXtkrku0Vy/aKZXvFsr1i2V6xbK9Ytlcs2yuW7RXL9ople8WyvWLZXrFsr1i2VyzbK5btFcv2imV7xbK9YtlesWyvWLZXLNsrlu0Vy/aKZXvFsr1i2V6xbK9YrrVXP5lsYDRAnAAA
+  </data>
+ </layer>
+ <layer name="under hero 2" width="100" height="100">
+  <properties>
+   <property name="drawlayer" value="under"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3YwQnCUBBF0fktaAqJFqIpzViIsRC1JseFEMStzBfOgbcfuLuJAAAAqLNpEdvc0Kov4WXMDrvcXo8uHLLDMTfpAQAAAAA/c2oR82pn/7gS7w7Lx656lLh8aaFHHT36okdf9OjTbdXinnvoAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwJ96AozJp05AnAAA
+  </data>
+ </layer>
+ <layer name="none as hero 1" width="100" height="100">
+  <properties>
+   <property name="collision" value="true"/>
+   <property name="drawlayer" value="none"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3cSUrsUACF4aqZiroQdRGuxIluQV2Bgt1IHaqggt3IcmiLYDdSh7YIdtvwFEQMwYKiyE1Okv+DQ6mTuqn/hTcIWqsBAFA8K9pqtLWcz+JqvF6rTUSbrId9r0PtKNpx2LcqrEU1WIq2HLjHg/YY7SnsWxXWvhoMaw3tIHCPTkzpTNOG5wrlVtc6ot1p99F1j+p1zOQz2NA5Nk3OgvLfH0W7vlb3x4w2q81p89pCtsdKze/1dWs90boS3+e55cR5W/372dK2tR1tV9sL/slVU7JHq/vjQrvUrrRr7Sb4yaqp3fvjXfvQPrUv7Tv4yaqp3fujDI51XSf1v9fTjL/+72fric862aPMnnTtz/W/15eMv/7vZ2cV7uHolR5W6OGFHl7o4SWtHvHnOFk8yymrtHrEn+Nk8SynrNLq0XyO04jN8VlOEaTVo/kc5y62e3p0hP/PvdDDCz280MMLPbzQwws9vNDDCz280MMLPbzQwws9vNDDCz280MMLPbzQwws9vNDDCz280MMLPbzQwws9vNDDCz280MMLPbzQwws9vNDDCz280MMLPfK3Gvt7Mudar9an9Td/DzPvw1VQ/O/JvGkD2qA21Pw9zLwPBwAAAAAAAAAAAAAAAAAAAAAAAAAAACCIH7xnURBAnAAA
+  </data>
+ </layer>
+ <layer name="none as hero 2" width="100" height="100">
+  <properties>
+   <property name="collision" value="true"/>
+   <property name="drawlayer" value="none"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3ZsQmAUAwE0J/J1DUEdSkncULRWFhaiCl8r0l7cJDmWgMAeGasDgAv6SLvELU5SNPVw3Lrw78BAAAAAIB/OnacPnLHWavDcO44c+SOs1WHAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD42A79VO+UQJwAAA==
+  </data>
+ </layer>
+ <layer name="over hero 1" width="100" height="100">
+  <properties>
+   <property name="drawlayer" value="over"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3Zuw3CMBQFUGcsBgAJen4TQM+vhSEYDViHV1AgpChNSOzkHOkW6a6t99I4JQBox6NK6fnJq+q7Dbmbx4wsRj4n1zj/LZM72EWPfSZd+jKN888yuYOm/Zh0V+UvStv/uv1YRlaRdWQT2XZbqzWl7X/d/Bwix8gpco5cuq01Gvef79LmZ+hK+78Onf0AAABy8/2O4y0HAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAmr0BuadlcECcAAA=
+  </data>
+ </layer>
+ <layer name="over hero 2" width="100" height="100">
+  <properties>
+   <property name="drawlayer" value="over"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3ZMQ0AMAgAQfBvAWGVUwWEhYTlTsHvHwEAu15eFwAAAAAAANApLwcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABGH4yR8OFAnAAA
+  </data>
+ </layer>
+</map>
