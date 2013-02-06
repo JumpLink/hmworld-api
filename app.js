@@ -20,7 +20,7 @@ function init_rpg() {
 }
 init_rpg();
 
-map = require('./routes/map')(rs);
+map = require('./routes/map')(rpg, rs);
 
 app.configure(function(){
   app.set('port', process.env.PORT || 3005);

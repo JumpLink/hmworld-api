@@ -2,7 +2,7 @@
 /*
  * GET users listing.
  */
-module.exports = function (rs) {
+module.exports = function (rpg, rs) {
 	return {
 		filename: function (req, res){
 
@@ -21,12 +21,24 @@ module.exports = function (rs) {
 
 			var map = rs.mapmanager.get_from_filename(req.params.filename);
 
+			var real_params = new rpg.MapJsonParam({
+				with_filename:par.filename,
+				with_orientation:par.orientation,
+				with_version:par.version,
+				with_size:par.size,
+				with_tilesize:par.tilesize,
+				with_property:par.property,
+				with_layer:par.layer,
+				with_merged_layer_pixbuf:par.pixbuf
+			});
+
 			if(map != null) {
 				if(par.pixbuf)
 					map.merge();
 				var json;
 				if(param_count > 0)
-					json = map.get_json_indi_as_str(par.filename, par.orientation, par.version, par.size, par.tilesize, par.property, par.layer, par.pixbuf);
+					// json = map.get_json_indi_as_str(par.filename, par.orientation, par.version, par.size, par.tilesize, par.property, par.layer, par.pixbuf);
+					json = map.get_json_indi_as_str(real_params);
 				else
 					json = map.json_str;
 				res.setHeader('Content-Type', 'application/json');
