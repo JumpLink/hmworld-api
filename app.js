@@ -20,7 +20,8 @@ function init_rpg() {
 }
 init_rpg();
 
-map = require('./routes/map')(rpg, rs);
+var map = require('./routes/map')(rpg, rs);
+var map_manager = require('./routes/map_manager')(rpg, rs);
 
 app.configure(function(){
   app.set('port', process.env.PORT || 3005);
@@ -39,6 +40,7 @@ app.configure('development', function(){
 });
 
 app.get('/', routes.index);
+app.get('/maps', map_manager.default);
 app.get('/map/:filename', map.filename);
 
 http.createServer(app).listen(app.get('port'), function(){
