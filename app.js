@@ -20,7 +20,6 @@ function init_rpg() {
 }
 init_rpg();
 
-var map = require('./routes/map')(rpg, rs);
 var map_manager = require('./routes/map_manager')(rpg, rs);
 
 app.configure(function(){
@@ -40,8 +39,8 @@ app.configure('development', function(){
 });
 
 app.get('/', routes.index);
-app.get('/maps', map_manager.default);
-app.get('/map/:filename', map.filename);
+app.get('/resource_manager/map_manager', map_manager.default);
+app.get('/resource_manager/map_manager/:filename', map_manager.filename);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
