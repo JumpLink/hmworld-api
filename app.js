@@ -40,10 +40,14 @@ app.configure('development', function() {
 });
 
 app.get('/', routes.index);
+
+/* MapManager */
 app.get('/resource_manager/map_manager', map_manager.get_map_manager);
 app.get('/resource_manager/map_manager/:filename', map_manager.get_map_from.filename);
 app.get('/resource_manager/map_manager/:filename/:layer_index', map_manager.get_layer_from.index);
 
+/* TilesetManager */
+app.get('/resource_manager/tileset_manager', tileset_manager.get_tileset_manager);
 app.get('/resource_manager/tileset_manager/:filename', tileset_manager.get_tileset_from.filename);
 app.get('/resource_manager/tileset_manager/:filename/:tile_index', tileset_manager.get_tile_from.index);
 

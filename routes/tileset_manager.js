@@ -31,8 +31,30 @@ function parse_tileset_query (rpg, tileset) {
 	}
 }
 
+//TODO move to librpg-node
+function parse_tileset_manager_query (rpg, params) {
+	if (params === undefined) {
+		return new rpg.TilesetManagerJsonParam ();
+	} else {
+		return new rpg.TilesetManagerJsonParam({
+			folder : (params.folder == '' || params.folder == 1),
+			tileset : parse_tileset_query (rpg, params.tileset)
+		});
+	}
+}
+
 module.exports = function (rpg, resource_manager) {
 	return {
+		get_tileset_manager : function (req, res) {
+			if(Object.keys(req.query).length > 0) {
+				var vala_params = parse_tileset_manager_query(rpg, req.query);
+				json = resource_manager.tilesetmanager.get_json_indi_as_str(vala_params);
+			} else {
+				json = '{"error": "no query string passed"}';
+			}
+			res.setHeader('Content-Type', 'application/json');
+			res.send(json);
+		},
 		get_tileset_from : {
 			filename : function (req, res) {
 				if(Object.keys(req.query).length > 0) {
