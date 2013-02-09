@@ -34,13 +34,14 @@ app.configure(function(){
   app.use(express.static(path.join(__dirname, 'public')));
 });
 
-app.configure('development', function(){
+app.configure('development', function() {
   app.use(express.errorHandler());
 });
 
 app.get('/', routes.index);
 app.get('/resource_manager/map_manager', map_manager.default);
 app.get('/resource_manager/map_manager/:filename', map_manager.filename);
+app.get('/resource_manager/map_manager/:filename/:layer_index', map_manager.layer.index);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
