@@ -21,6 +21,7 @@ function init_rpg() {
 init_rpg();
 
 var map_manager = require('./routes/map_manager')(rpg, rs);
+var tileset_manager = require('./routes/tileset_manager')(rpg, rs);
 
 app.configure(function(){
   app.set('port', process.env.PORT || 3005);
@@ -42,6 +43,8 @@ app.get('/', routes.index);
 app.get('/resource_manager/map_manager', map_manager.default);
 app.get('/resource_manager/map_manager/:filename', map_manager.filename);
 app.get('/resource_manager/map_manager/:filename/:layer_index', map_manager.layer.index);
+
+app.get('/resource_manager/tileset_manager/:filename/:tile_index', tileset_manager.tile.index);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
