@@ -50,7 +50,7 @@ function parse_map_manager_query (rpg, map_manager) {
  */
 module.exports = function (rpg, resource_manager) {
 	return {
-		default: function (req, res){
+		get_map_manager: function (req, res){
 			var param_count = Object.keys(req.query).length;
 
 			if(param_count > 0) {
@@ -67,27 +67,29 @@ module.exports = function (rpg, resource_manager) {
 			res.send(json);
 		},
 
-		filename: function (req, res) {
-			var param_count = Object.keys(req.query).length;
+		get_map_from:  {
+			filename: function (req, res) {
+				var param_count = Object.keys(req.query).length;
 
-			var map = resource_manager.mapmanager.get_from_filename(req.params.filename);
+				var map = resource_manager.mapmanager.get_from_filename(req.params.filename);
 
-			var vala_map_params = parse_map_query(rpg, req.query);
+				var vala_map_params = parse_map_query(rpg, req.query);
 
-			if(map != null) {
-				var json;
-				if(param_count > 0)
-					json = map.get_json_indi_as_str(vala_map_params);
-				else
-					json = '{"error": "no query string passed"}';
-				res.setHeader('Content-Type', 'application/json');
-				res.send(json);
-			} else {
-				res.json({error:"map not found", filename:req.params.filename});
+				if(map != null) {
+					var json;
+					if(param_count > 0)
+						json = map.get_json_indi_as_str(vala_map_params);
+					else
+						json = '{"error": "no query string passed"}';
+					res.setHeader('Content-Type', 'application/json');
+					res.send(json);
+				} else {
+					res.json({error:"map not found", filename:req.params.filename});
+				}
 			}
 		},
 
-		layer: {
+		get_layer_from: {
 			index: function (req, res) {
 				var param_count = Object.keys(req.query).length;
 

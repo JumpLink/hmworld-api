@@ -40,11 +40,12 @@ app.configure('development', function() {
 });
 
 app.get('/', routes.index);
-app.get('/resource_manager/map_manager', map_manager.default);
-app.get('/resource_manager/map_manager/:filename', map_manager.filename);
-app.get('/resource_manager/map_manager/:filename/:layer_index', map_manager.layer.index);
+app.get('/resource_manager/map_manager', map_manager.get_map_manager);
+app.get('/resource_manager/map_manager/:filename', map_manager.get_map_from.filename);
+app.get('/resource_manager/map_manager/:filename/:layer_index', map_manager.get_layer_from.index);
 
-app.get('/resource_manager/tileset_manager/:filename/:tile_index', tileset_manager.tile.index);
+app.get('/resource_manager/tileset_manager/:filename', tileset_manager.get_tileset_from.filename);
+app.get('/resource_manager/tileset_manager/:filename/:tile_index', tileset_manager.get_tile_from.index);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
