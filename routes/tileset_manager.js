@@ -13,7 +13,7 @@ function parse_tile_query (rpg, tile) {
 }
 
 //TODO move to librpg-node
-function parse_tileset_query (rpg, tileset) {
+function parse_tileset_query (rpg, tileset, tile) {
 	if (tileset === undefined) {
 		return new rpg.TilesetJsonParam ();
 	} else {
@@ -26,19 +26,19 @@ function parse_tileset_query (rpg, tileset) {
 			size : (tileset.size == '' || tileset.size == 1),
 			count : (tileset.count == '' || tileset.count == 1),
 			tex : (tileset.tex == '' || tileset.tex == 1),
-			tile : parse_tile_query (rpg, tileset.tile)
+			tile : parse_tile_query (rpg, tile)
 		});
 	}
 }
 
 //TODO move to librpg-node
-function parse_tileset_manager_query (rpg, params) {
-	if (params === undefined) {
+function parse_tileset_manager_query (rpg, tileset_manager, tileset, tile) {
+	if (tileset_manager === undefined) {
 		return new rpg.TilesetManagerJsonParam ();
 	} else {
 		return new rpg.TilesetManagerJsonParam({
-			folder : (params.folder == '' || params.folder == 1),
-			tileset : parse_tileset_query (rpg, params.tileset)
+			folder : (tileset_manager.folder == '' || tileset_manager.folder == 1),
+			tileset : parse_tileset_query (rpg, tileset, tile)
 		});
 	}
 }
@@ -47,7 +47,7 @@ module.exports = function (rpg, resource_manager) {
 	return {
 		get_tileset_manager : function (req, res) {
 			if(Object.keys(req.query).length > 0) {
-				var vala_params = parse_tileset_manager_query(rpg, req.query);
+				var vala_params = parse_tileset_manager_query(rpg, req.query, req.query.tileset, req.query.tile);
 				json = resource_manager.tilesetmanager.get_json_indi_as_str(vala_params);
 			} else {
 				json = '{"error": "no query string passed"}';
@@ -58,7 +58,7 @@ module.exports = function (rpg, resource_manager) {
 		get_tileset_from : {
 			filename : function (req, res) {
 				if(Object.keys(req.query).length > 0) {
-					var vala_tileset_params = parse_tileset_query(rpg, req.query);
+					var vala_tileset_params = parse_tileset_query(rpg, req.query, req.query.tile);
 					json = resource_manager.tilesetmanager.get_from_filename(req.params.filename).get_json_indi_as_str(vala_tileset_params);
 				} else {
 					json = '{"error": "no query string passed"}';
