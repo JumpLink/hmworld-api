@@ -46,6 +46,7 @@ function parse_tileset_manager_query (rpg, tileset_manager, tileset, tile) {
 module.exports = function (rpg, resource_manager) {
 	return {
 		get_tileset_manager : function (req, res) {
+			var json;
 			if(Object.keys(req.query).length > 0) {
 				var vala_params = parse_tileset_manager_query(rpg, req.query, req.query.tileset, req.query.tile);
 				json = resource_manager.tilesetmanager.get_json_indi_as_str(vala_params);
@@ -53,6 +54,8 @@ module.exports = function (rpg, resource_manager) {
 				json = '{"error": "no query string passed"}';
 			}
 			res.setHeader('Content-Type', 'application/json');
+			if(req.query.callback)
+				json = req.query.callback+'('+json+');';
 			res.send(json);
 		},
 		get_tileset_from : {
@@ -63,25 +66,27 @@ module.exports = function (rpg, resource_manager) {
 				} else {
 					json = '{"error": "no query string passed"}';
 				}
-
 				res.setHeader('Content-Type', 'application/json');
+				if(req.query.callback)
+					json = req.query.callback+'('+json+');';
 				res.send(json);
 			}
 		},
 		get_tile_from : {
 			index : function (req, res) {
 				var param_count = Object.keys(req.query).length;
-
+				var json;
 				if(param_count > 0) {
 					var vala_tile_params = parse_tile_query(rpg, req.query);
 					json = resource_manager.tilesetmanager.get_from_filename(req.params.filename).get_tile_from_index(req.params.index).get_json_indi_as_str(vala_tile_params);
 				} else {
 					json = '{"error": "no query string passed"}';
 				}
-
 				res.setHeader('Content-Type', 'application/json');
+				if(req.query.callback)
+					json = req.query.callback+'('+json+');';
 				res.send(json);
-			},
+			}
 		}
-	}
-}
+	};
+};

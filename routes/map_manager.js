@@ -17,7 +17,6 @@ function parse_map_layer_query (rpg, layer) {
 
 //TODO move to librpg-node
 function parse_map_query (rpg, map) {
-	console.log(map);
 	if (map === undefined) {
 		return new rpg.MapJsonParam ();
 	} else {
@@ -52,6 +51,7 @@ module.exports = function (rpg, resource_manager) {
 	return {
 		get_map_manager: function (req, res){
 			var param_count = Object.keys(req.query).length;
+			var json;
 
 			if(param_count > 0) {
 				var vala_map_params = parse_map_query(rpg, req.query.map);
@@ -64,15 +64,18 @@ module.exports = function (rpg, resource_manager) {
 			}
 
 			res.setHeader('Content-Type', 'application/json');
+
+			// JSONP Support
+			if(req.query.callback)
+				json = req.query.callback+'('+json+');';
+
 			res.send(json);
 		},
 
 		get_map_from:  {
 			filename: function (req, res) {
 				var param_count = Object.keys(req.query).length;
-
 				var map = resource_manager.mapmanager.get_from_filename(req.params.filename);
-
 				var vala_map_params = parse_map_query(rpg, req.query);
 
 				if(map != null) {
@@ -82,6 +85,10 @@ module.exports = function (rpg, resource_manager) {
 					else
 						json = '{"error": "no query string passed"}';
 					res.setHeader('Content-Type', 'application/json');
+
+					if(req.query.callback)
+						json = req.query.callback+'('+json+');';
+
 					res.send(json);
 				} else {
 					res.json({error:"map not found", filename:req.params.filename});
@@ -92,9 +99,7 @@ module.exports = function (rpg, resource_manager) {
 		get_layer_from: {
 			index: function (req, res) {
 				var param_count = Object.keys(req.query).length;
-
 				var layer = resource_manager.mapmanager.get_from_filename(req.params.filename).get_layer_from_index(req.params.layer_index);
-
 				var vala_map_layer_params = parse_map_layer_query(rpg, req.query);
 
 				if(layer != null) {
@@ -104,6 +109,10 @@ module.exports = function (rpg, resource_manager) {
 					else
 						json = '{"error": "no query string passed"}';
 					res.setHeader('Content-Type', 'application/json');
+
+					if(req.query.callback)
+						json = req.query.callback+'('+json+');';
+
 					res.send(json);
 				} else {
 					res.json({error:"layer not found", filename:req.params.filename});
