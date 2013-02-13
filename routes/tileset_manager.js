@@ -4,10 +4,10 @@ function parse_tile_query (rpg, tile) {
 		return new rpg.TileJsonParam ();
 	} else {
 		return new rpg.TileJsonParam({
-			tex : (tile.tex == '' || tile.tex == 1),
-			gid : (tile.gid == '' || tile.gid == 1),
-			size : (tile.size == '' || tile.size == 1),
-			tile_type : (tile.tile_type == '' || tile.tile_type == 1)
+			tex : (tile.tex === '' || tile.tex === 1),
+			gid : (tile.gid === '' || tile.gid === 1),
+			size : (tile.size === '' || tile.size === 1),
+			tile_type : (tile.tile_type === '' || tile.tile_type === 1)
 		});
 	}
 }
@@ -18,14 +18,14 @@ function parse_tileset_query (rpg, tileset, tile) {
 		return new rpg.TilesetJsonParam ();
 	} else {
 		return new rpg.TilesetJsonParam({
-			name : (tileset.name == '' || tileset.name == 1),
-			filename : (tileset.filename == '' || tileset.filename == 1),
-			tile_size : (tileset.tile_size == '' || tileset.tile_size == 1),
-			source : (tileset.source == '' || tileset.source == 1),
-			transparency : (tileset.transparency == '' || tileset.transparency == 1),
-			size : (tileset.size == '' || tileset.size == 1),
-			count : (tileset.count == '' || tileset.count == 1),
-			tex : (tileset.tex == '' || tileset.tex == 1),
+			name : (tileset.name === '' || tileset.name === 1),
+			filename : (tileset.filename === '' || tileset.filename === 1),
+			tile_size : (tileset.tile_size === '' || tileset.tile_size === 1),
+			source : (tileset.source === '' || tileset.source === 1),
+			transparency : (tileset.transparency === '' || tileset.transparency === 1),
+			size : (tileset.size === '' || tileset.size === 1),
+			count : (tileset.count === '' || tileset.count === 1),
+			tex : (tileset.tex === '' || tileset.tex === 1),
 			tile : parse_tile_query (rpg, tile)
 		});
 	}
@@ -37,7 +37,7 @@ function parse_tileset_manager_query (rpg, tileset_manager, tileset, tile) {
 		return new rpg.TilesetManagerJsonParam ();
 	} else {
 		return new rpg.TilesetManagerJsonParam({
-			folder : (tileset_manager.folder == '' || tileset_manager.folder == 1),
+			folder : (tileset_manager.folder === '' || tileset_manager.folder === 1),
 			tileset : parse_tileset_query (rpg, tileset, tile)
 		});
 	}

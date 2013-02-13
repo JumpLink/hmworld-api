@@ -57,7 +57,14 @@ app.get('/', routes.index);
 }
 
 /* IMAGE */ {
-  app.get('/image/resource_manager/map_manager/:filename/:layer_index', image.map_manager.get_layer_from.index);
+  /* Layer */ {
+    app.get('/image/resource_manager/map_manager/:filename/under', image.map_manager.get_merged_layer_from.type.under);
+    app.get('/image/resource_manager/map_manager/:filename/over', image.map_manager.get_merged_layer_from.type.over);
+    app.get('/image/resource_manager/map_manager/:filename/:layer_index', image.map_manager.get_layer_from.index);
+  }
+  /* Sprites */ {
+    app.get('/image/resource_manager/spriteset_manager/:filename', image.spriteset_manager.get_spriteset_from.filename);  
+  }
 }
 
 http.createServer(app).listen(app.get('port'), function(){
