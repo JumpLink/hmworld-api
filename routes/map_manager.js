@@ -5,12 +5,12 @@ function parse_map_layer_query (rpg, layer) {
 		return new rpg.MapLayerJsonParam ();
 	} else {
 		return new rpg.MapLayerJsonParam({
-			with_name : (layer.name === '' || layer.name === 1),
-			with_zoff : (layer.zoff === '' || layer.zoff === 1),
-			with_size : (layer.size === '' || layer.size === 1),
-			with_collision : (layer.collision === '' || layer.collision === 1),
-			with_data : (layer.data === '' || layer.data === 1),
-			with_texture : (layer.texture === '' || layer.texture === 1)
+			with_name : (layer.name === '' || layer.name == 1),
+			with_zoff : (layer.zoff === '' || layer.zoff == 1),
+			with_size : (layer.size === '' || layer.size == 1),
+			with_collision : (layer.collision === '' || layer.collision == 1),
+			with_data : (layer.data === '' || layer.data == 1),
+			with_texture : (layer.texture === '' || layer.texture == 1)
 		});
 	}
 }
@@ -21,14 +21,14 @@ function parse_map_query (rpg, map) {
 		return new rpg.MapJsonParam ();
 	} else {
 		return new rpg.MapJsonParam ({
-			with_filename : (map.filename === '' || map.filename === 1),
-			with_orientation : (map.orientation === '' || map.orientation === 1),
-			with_version : (map.version === '' || map.version === 1),
-			with_size : (map.size === '' || map.size === 1),
-			with_tilesize : (map.tilesize === '' || map.tilesize === 1),
-			with_property : (map.property === '' || map.property === 1),
-			layer_under_pixbuf : (map.layer_under_pixbuf === '' || map.layer_under_pixbuf === 1),
-			layer_over_pixbuf : (map.layer_over_pixbuf === '' || map.layer_over_pixbuf === 1),
+			with_filename : (map.filename === '' || map.filename == 1),
+			with_orientation : (map.orientation === '' || map.orientation == 1),
+			with_version : (map.version === '' || map.version == 1),
+			with_size : (map.size === '' || map.size == 1),
+			with_tilesize : (map.tilesize === '' || map.tilesize == 1),
+			with_property : (map.property === '' || map.property == 1),
+			layer_under_pixbuf : (map.layer_under_pixbuf === '' || map.layer_under_pixbuf == 1),
+			layer_over_pixbuf : (map.layer_over_pixbuf === '' || map.layer_over_pixbuf == 1),
 			map_layer_params : parse_map_layer_query(rpg, map.layer)
 		});
 	}
@@ -39,7 +39,7 @@ function parse_map_manager_query (rpg, map_manager) {
 		return new rpg.MapManagerJsonParam ();
 	} else {
 		return new rpg.MapManagerJsonParam ({
-			with_folder : (map_manager.folder === '' || map_manager.folder === 1),
+			with_folder : (map_manager.folder === '' || map_manager.folder == 1),
 			map_params : parse_map_query (rpg, map_manager.map)
 		});
 	}
