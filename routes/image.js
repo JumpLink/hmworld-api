@@ -10,6 +10,7 @@ module.exports = function (rpg, resource_manager) {
 						var base64 = layer.tex.base64;
 						var buf = new Buffer(base64, encoding='Base64');
 						res.setHeader('Content-Type', 'image/png');
+						res.setHeader("Access-Control-Allow-Origin", "*"); // Remove on production
 						res.send(buf);
 
 					} else {
@@ -26,6 +27,7 @@ module.exports = function (rpg, resource_manager) {
 							var base64 = map.over.base64;
 							var buf = new Buffer(base64, encoding='Base64');
 							res.setHeader('Content-Type', 'image/png');
+							res.setHeader("Access-Control-Allow-Origin", "*"); // Remove on production
 							res.send(buf);
 						} else {
 							res.json({error:"map not found", filename:req.params.filename});
@@ -38,6 +40,7 @@ module.exports = function (rpg, resource_manager) {
 							var base64 = map.under.base64;
 							var buf = new Buffer(base64, encoding='Base64');
 							res.setHeader('Content-Type', 'image/png');
+							res.setHeader("Access-Control-Allow-Origin", "*"); // Remove on production
 							res.send(buf);
 						} else {
 							res.json({error:"map not found", filename:req.params.filename});
@@ -55,6 +58,7 @@ module.exports = function (rpg, resource_manager) {
 						var base64 = spriteset.merge_layer().base64;
 						var buf = new Buffer(base64, encoding='Base64');
 						res.setHeader('Content-Type', 'image/png');
+						res.setHeader("Access-Control-Allow-Origin", "*"); // Remove on production
 						res.send(buf);
 					} else {
 						res.json({error:"spriteset not found", filename:req.params.filename});
